@@ -1,0 +1,183 @@
+import type { TopicContent } from '../../types';
+
+export const prepositionsTopic: TopicContent = {
+  meta: {
+    id: 'prepositions',
+    title: '介词时空几何拓扑全景',
+    enTitle: 'Prepositions & Spatio-Temporal Topology',
+    desc: '从 0D 点(at)、2D 面(on)、3D 容器(in)拓扑模型到动态位移（through/across/into）与高频技术介词搭配',
+    icon: '🧭',
+    pillarId: 'verbs',
+    badge: '时空拓扑',
+  },
+  diagrams: [
+    {
+      id: 'd-prep-topology',
+      title: '空间介词几何拓扑维度模型 (0D / 2D / 3D Topology)',
+      desc: '介词不是随机背诵的碎片，而是人类大脑基于空间物理维度的投影',
+      code: `graph LR
+    P0D["0D 几何离散点\nat (在某一点)\nat port 8080 / at 9:00 AM\nat the intersection"] --> P2D["2D 连续接触面\non (在某一面)\non the screen / on the desk\non Monday (特定天)"]
+    P2D --> P3D["3D 封闭容器包络\nin (在体/内部)\nin the datacenter / in China\nin 2026 (宽泛时段)"]`,
+    },
+    {
+      id: 'd-prep-dynamic-vectors',
+      title: '动态空间位移向量模型 (Motion Vectors)',
+      desc: '静态存在 vs 动态穿透向量：through (3D 穿透体内) vs across (2D 横跨表面) vs into (侵入内部)',
+      code: `graph TD
+    Static["静态空间存在\nin (在内部) / on (在表面)"] --> Motion["动态位移向量\ninto (由外部跃入内部: log into)\nonto (由空间跃至表面: upload onto)\nthrough (穿透3D管道: traffic through firewall)\nacross (横越2D平面: requests across nodes)"]`,
+    },
+  ],
+  formulas: [
+    {
+      id: 'f-time-pyramid',
+      title: '时间介词金字塔法则 (The Time Pyramid)',
+      badge: '时空法则',
+      formula: 'at [精确瞬间时刻点] ➔ on [特定公历某一天] ➔ in [宽泛大区间 (月/年/季/世纪)]',
+      desc: '时间粒度从小到大的绝对规则：精确到小时用 at；锁定到某一天用 on；拉长到月份或更久用 in！',
+      tokens: [
+        { label: 'at (点)', role: '时刻瞬间', color: 'blue', desc: 'at 9:00 AM / at noon / at midnight' },
+        { label: 'on (天)', role: '具体某天', color: 'emerald', desc: 'on Monday / on Oct 12th / on Christmas Day' },
+        { label: 'in (段)', role: '宽泛区间', color: 'purple', desc: 'in October / in 2026 / in summer / in the morning' },
+      ],
+      example: {
+        en: 'The meeting starts at 9:00 AM on Monday in October.',
+        zh: '会议将于十月份某个周一的上午 9:00 开始。',
+      },
+    },
+    {
+      id: 'f-prep-two-functions',
+      title: '介词短语两大语法职能公式',
+      badge: '语法骨架',
+      formula: '职能 1: 充当状语 (修饰核心动词: S + V + O + [Prep Phrase 状语]) | 职能 2: 充当后置定语 (修饰名词: Noun + [Prep Phrase 定语])',
+      desc: '介词不能单独作成分，必须与名词/代词连用构成“介词短语”。介词短语既能修饰动作（在哪做、怎么做），也能修饰名词（哪个物体）。',
+      example: {
+        en: 'The server in the cloud (定语: 云端的服务器) runs with high speed (状语: 高速运行).',
+        zh: '云端的服务器正在以极高的速度运行。',
+      },
+    },
+    {
+      id: 'f-through-vs-across',
+      title: 'through vs across 维度穿透判别式',
+      badge: '维度辨析',
+      formula: 'through (3D 穿过封闭空间内部: through tunnel / firewall) VS across (2D 穿过开阔平面: across the bridge / subnet)',
+      desc: '数据包通过防火墙时，防火墙被认知为一个立体空间通道，因此必须用 through the firewall！',
+      example: {
+        en: 'Traffic flows through the web application firewall.',
+        zh: '流量穿透流经 Web 应用防火墙。',
+      },
+    },
+  ],
+  skeletons: [
+    {
+      id: 'sk-prep-attributive',
+      badge: '语法职能：后置定语',
+      type: 'Noun + Prep Phrase',
+      title: '介词短语作后置定语：精准限定名词',
+      desc: 'in the primary availability zone 紧紧贴在 cluster 后方充当定语。',
+      formula: 'S (The database cluster + [in the zone 定语]) + operates (谓语) + smoothly (副词)',
+      sentence: 'The database cluster in the primary availability zone operates smoothly.',
+      translation: '位于首要可用区内的数据库集群运行平稳。',
+      parts: [
+        { text: 'The database cluster', role: '核心名词中心词', type: 'subject', detail: '数据库集群' },
+        { text: '[in the primary availability zone]', role: '介词短语后置定语', type: 'adverbial', detail: '限定修饰：位于哪个可用区' },
+        { text: 'operates', role: '谓语动词 (V)', type: 'verb', detail: '运转' },
+        { text: 'smoothly', role: '方式副词', type: 'adverbial', detail: '平稳地' },
+      ],
+      explanation: '中文习惯说“首要可用区内的数据库集群”（前置定语），英文必须把介词短语推到 cluster 后面（后置定语，右倾展开）。',
+      itAnalogy: 'clusters.find(c => c.zone === "AZ-1").operate();',
+    },
+    {
+      id: 'sk-prep-motion-into',
+      badge: '动态位移',
+      type: 'Dynamic Vector (into)',
+      title: '动态空间侵入：stream into',
+      desc: 'into 表现数据从外部流向管道内部的运动轨迹。',
+      formula: 'S + stream + [into the message queue 动态方向状语]',
+      sentence: 'Telemetry data streams continuously into the message queue.',
+      translation: '遥测数据源源不断地流入消息队列之中。',
+      parts: [
+        { text: 'Telemetry data', role: '主语 (S)', type: 'subject', detail: '遥测数据' },
+        { text: 'streams', role: '不及物动词 (V)', type: 'verb', detail: '流向' },
+        { text: '[continuously]', role: '副词状语', type: 'adverbial', detail: '连续地' },
+        { text: '[into the message queue]', role: '动态介词短语方向状语', type: 'adverbial', detail: '由外向内注入队列中' },
+      ],
+      explanation: 'in 强调在内部，into 强调从外面向里面发生位移注入。',
+      itAnalogy: 'messageQueue.push(telemetryData);',
+    },
+  ],
+  compares: [
+    {
+      id: 'cmp-on-monday-error',
+      chinese: '我们在周一上线了新版本。',
+      wrong: 'We released the new version in Monday.',
+      correct: 'We released the new version on Monday.',
+      formula: '具体星期几必须用 on (不可用 in)',
+      reason: '星期（Monday, Friday）属于具体的“天”，根据时间金字塔法则，具体某一天必须搭配介词 on！',
+    },
+    {
+      id: 'cmp-through-firewall',
+      chinese: '所有未经授权的请求都无法穿过防火墙。',
+      wrong: 'Unauthorized requests cannot pass across the firewall.',
+      correct: 'Unauthorized requests cannot pass through the firewall.',
+      formula: '防火墙是立体空间防线，必须用 through (穿透)',
+      reason: 'across 专用于走过平坦的街道或桥梁；防火墙在计算机体系中是立体的过滤管道，穿透必须使用 through！',
+    },
+  ],
+  quizzes: [
+    {
+      id: 'q-prep-time-pyramid',
+      title: '时间介词金字塔自测',
+      question: '如果要表达「例行系统维护定于 2026 年 10 月 12 日的上午 9:00 开始」，正确的介词搭配是：\n"Maintenance starts ______ 9:00 AM ______ October 12th ______ 2026."',
+      options: [
+        { text: 'at / on / in', isCorrect: true, explanation: '正确！时刻用 at (at 9:00 AM)；具体某天用 on (on October 12th)；年份用 in (in 2026)。' },
+        { text: 'in / at / on', isCorrect: false, explanation: '错误：时刻不能用 in，年份不能用 on。' },
+        { text: 'on / in / at', isCorrect: false, explanation: '错误：完全违背时间金字塔从点到面的规则。' },
+      ],
+    },
+  ],
+  tables: [
+    {
+      title: '技术开发与运维高频介词时空拓扑速查矩阵 (The Preposition Topology Master Matrix)',
+      headers: ['介词', '几何拓扑模型', '核心适用场景', '易混对比辨析', '技术场景标准例句'],
+      rows: [
+        ['at', '0D 点 (Point)', '精确时刻点 / 物理或虚拟端口 / 交叉点', 'at port 8080 (精确点位)', 'The server listens at port 443.'],
+        ['on', '2D 面 (Surface)', '具体某一天 / 屏幕表面 / 磁盘媒介', 'on Monday (某天) / on the SSD (介质)', 'The app is hosted on AWS.'],
+        ['in', '3D 体 (Volume)', '封闭空间内部 / 城市国家 / 宽泛月份年份', 'in October / in the datacenter', 'Data is stored in the database.'],
+        ['into', '由外至内向量', '注入、写入、落入容器', 'stream into (发生跨越界限位移)', 'Logs are ingested into Elasticsearch.'],
+        ['out of', '由内至外向量', '从容器内部移出、耗尽资源', 'run out of disk space (耗尽)', 'Extract archived logs out of cold storage.'],
+        ['onto', '落至表面向量', '由空间落至某一接触面', 'upload onto server / copy onto disk', 'Deploy code onto the production server.'],
+        ['off', '脱离表面/脱机', '从表面脱落、离开网络/服务', 'take server off line / log off', 'We took the vulnerable node off the network.'],
+        ['through', '3D 穿透管道', '穿过隧道 / 穿透防火墙 / 通过流程', 'through firewall (3D立体穿透)', 'Packets pass through the VPN gateway.'],
+        ['across', '2D 跨越平面', '横跨子网 / 分布在多节点上', 'across clusters (跨越多个节点)', 'Data is replicated across availability zones.'],
+        ['along', '沿一维线性路径', '沿着总线、管道、时间线演进', 'along the pipeline (沿流水线)', 'Events are processed along the data pipeline.'],
+        ['around / round', '环绕/围绕/大约', '环状拓扑周围 / 围绕某议题 / 大约数值', 'around the clock (全天候)', 'The proxy routes traffic around failed nodes.'],
+        ['toward(s)', '朝向/奔向目标', '表达运动的前进方向趋势', 'move toward cloud-native', 'The team is moving toward a microservice model.'],
+        ['between', '两者之间 (1对1)', '在两个独立节点或实体之间', 'between client and server', 'Latency between both nodes is 1ms.'],
+        ['among', '三者及以上 (群体)', '在庞大的集群节点或微服务群中', 'among 100 worker nodes', 'Consensus is reached among all peers.'],
+        ['under / below', '在……下方/受控于', '处于某实体正下方 / 低于阈值指标', 'under heavy load (在高负载下)', 'Memory usage remained below sixty percent.'],
+        ['above / over', '在……上方/超越', '处于某实体正上方 / 超越指标限额', 'over the budget / above SLA', 'Error rates spiked above the acceptable threshold.'],
+        ['behind', '在……后方/迟滞', '空间隐蔽后方 / 进度落后', 'behind the firewall / behind schedule', 'Place the database behind a strict firewall.'],
+        ['in front of', '在……正前方', '位于空间视觉或流转前沿', 'in front of the load balancer', 'Deploy an API gateway in front of all services.'],
+      ],
+    },
+    {
+      title: '时间、逻辑与抽象高频介词全景对照表 (Temporal & Abstract Prepositions)',
+      headers: ['介词单词', '核心逻辑/时态范畴', '中文意图精髓', '核心搭配与注意点', '技术场景标准例句'],
+      rows: [
+        ['by', '截止时间 / 依靠手段', '在……之前不迟于 / 通过……手段', 'by Friday (周五前) / by doing', 'We must ship the release by end of day.'],
+        ['within', '在……时间/空间限制内', '在限定阈值或时间窗口之内', 'within 5 minutes (5分钟之内)', 'The API must respond within 200 milliseconds.'],
+        ['during', '在……持续期间', '在某一段事件流程的持续周期内', 'during the deployment (在部署期间)', 'No configuration changes during the maintenance.'],
+        ['since', '自……起点至今', '以过去某特定时间点为起步跨越至今', 'since 2020 / since last release', 'The database has been stable since Monday.'],
+        ['until / till', '直到……时刻才为止', '动作持续一直到某个时间节点截止', 'until tomorrow / until fixed', 'Keep the alert active until the bug is fixed.'],
+        ['for', '为了目的 / 持续时长', '为了某个目的 / 持续长达某时间段', 'for 3 days (持续三天) / for speed', 'The stress test has been running for 24 hours.'],
+        ['with', '使用工具 / 伴随拥有', '用某种工具/媒介；携带着某些属性', 'with Python / with high throughput', 'Build the backend service with Go or Rust.'],
+        ['without', '没有/缺乏/排除', '在缺少某种前置条件或未发生某事下', 'without downtime (零宕机)', 'Deploy zero-downtime hotfixes without outage.'],
+        ['about', '关于某议题 / 大约', '围绕某主题展开；或表示大约数量', 'about the migration / about 10MB', 'We had a team meeting about the incident.'],
+        ['of', '所有归属 / 由……组成', '主从归属属性；组成成分', 'a cluster of 10 nodes / size of log', 'The architecture of our microservice is solid.'],
+        ['against', '对抗/防范/抵触', '防御某种攻击；违背某种规范政策', 'protect against DDoS / against policy', 'Configure rate limits to defend against attacks.'],
+        ['despite / in spite of', '尽管/不顾/让步', '后接名词或名词短语，表示让步转折', 'despite high traffic (尽管流量大)', 'The service ran smoothly despite the traffic spike.'],
+        ['beyond', '超越……界限/无法', '超越某阈值限度；超出能力范围', 'beyond our budget / beyond repair', 'Hardware upgrade costs were beyond our budget.'],
+      ],
+    },
+  ],
+};

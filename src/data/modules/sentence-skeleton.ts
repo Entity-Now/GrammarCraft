@@ -1,0 +1,170 @@
+import type { TopicContent } from '../../types';
+
+export const sentenceSkeletonTopic: TopicContent = {
+  meta: {
+    id: 'sentence-skeleton',
+    title: '句子骨架与基本句式',
+    enTitle: 'Sentence Skeleton & Types',
+    desc: '三大核心骨架 (SV/SVO/SLP)、陈述肯定/否定、一般/特殊/反问/反义疑问句形态演变',
+    icon: '🏗️',
+    pillarId: 'syntax',
+    badge: '骨干结构',
+  },
+  formulas: [
+    {
+      id: 'f-three-skeletons',
+      title: '三大核心骨架公式 (The 3 Core Skeletons)',
+      badge: '骨干公式',
+      formula: '1. 主谓 (S + V 不及物) | 2. 主谓宾 (S + V 及物 + O) | 3. 主系表 (S + Linker 等号 + P 表语)',
+      desc: '任何长难句无论多么繁复，剥去修饰参数外壳后，必定收敛于这三种基础核心骨架之一。',
+      tokens: [
+        { label: 'SV', role: '主谓结构', color: 'blue', desc: '动作由主体自发完成，无需承受客体 (如 The server crashed)' },
+        { label: 'SVO', role: '主谓宾结构', color: 'emerald', desc: '动作传递作用到具体宾语客体上 (如 We build the app)' },
+        { label: 'SLP', role: '主系表结构', color: 'purple', desc: '状态与属性说明，主语 = 表语 (如 The component is fast)' },
+      ],
+      example: {
+        en: 'The server crashed (SV) / I write code (SVO) / The code is fast (SLP).',
+        zh: '服务器崩溃了 / 我写代码 / 代码运行很快。',
+      },
+    },
+    {
+      id: 'f-tag-question-mirror',
+      title: '反义疑问句镜像反转公式 (Tag Question Mirror Rule)',
+      badge: '镜像法则',
+      formula: '前肯后否: [S + V / Linker (肯定)] , [Aux/Linker not + 代词] ? VS 前否后肯: [S + not (否定)] , [Aux/Linker + 代词] ?',
+      desc: '前半句陈述事实，末尾挂载简短反问尾巴核实。尾巴的助动词必须与主句时态/动词保持一致，且主语必须换为代词！',
+      example: {
+        en: 'The code works, doesn’t it? vs The server is not ready, is it?',
+        zh: '代码跑通了，对吧？ vs 服务器还没准备好，对吧？',
+      },
+    },
+  ],
+  skeletons: [
+    {
+      id: 'sk-skeleton-sv',
+      badge: '核心骨架 1',
+      type: 'SV (主谓)',
+      title: '主谓结构 (Subject + Verb)',
+      desc: '动作由主角自己发出，不需要作用于其他外部客体（使用不及物动词）。',
+      formula: 'S (主语) + V (不及物动词)',
+      formulaDesc: '动作自然完成，不传递给外部实体，句意自洽完整。',
+      sentence: 'The production server crashed during the peak traffic hours.',
+      translation: '生产服务器在流量高峰段崩溃了。',
+      parts: [
+        { text: 'The production server', role: '主语 (S)', type: 'subject', detail: '服务器 · 动作主体' },
+        { text: 'crashed', role: '不及物动词过去式 (V)', type: 'verb', detail: '崩溃 · 动作自洽无需宾语' },
+        { text: '[during the peak hours]', role: '时间介词短语状语', type: 'adverbial', detail: '在流量高峰期' },
+      ],
+      explanation: 'crashed 是不及物动词，不需要跟任何宾语，主谓结构已经完整。',
+      itAnalogy: '类比系统内部自发异常触发：server.onCrash();',
+    },
+    {
+      id: 'sk-skeleton-svo',
+      badge: '核心骨架 2',
+      type: 'SVO (主谓宾)',
+      title: '主谓宾结构 (Subject + Verb + Object)',
+      desc: '主角发出一个动作，作用到一个明确的客体对象上（及物动词）。',
+      formula: 'S (主语) + V (及物动词) + O (宾语)',
+      sentence: 'The developer optimized the SQL query for better throughput.',
+      translation: '开发人员对 SQL 查询进行了优化以获得更高的吞吐量。',
+      parts: [
+        { text: 'The developer', role: '主语 (S)', type: 'subject', detail: '开发者 · 动作发出者' },
+        { text: 'optimized', role: '及物动词 (V)', type: 'verb', detail: '优化 · 必须作用于客体' },
+        { text: 'the SQL query', role: '宾语 (O)', type: 'object', detail: 'SQL 查询 · 动作承受者' },
+        { text: '[for better throughput]', role: '目的状语', type: 'adverbial', detail: '为了更好的吞吐量' },
+      ],
+      explanation: 'optimized 是及物动词，必须携带宾语 the SQL query 才能使语义完整。',
+      itAnalogy: '类比标准方法调用：developer.optimize(sqlQuery, { goal: "throughput" });',
+    },
+    {
+      id: 'sk-skeleton-tag',
+      badge: '镜像法则',
+      type: 'Tag Question (反义疑问句)',
+      title: '反义疑问句：前肯后否结构',
+      desc: '前半句陈述事实，句末挂载简短反问尾巴向对方核实。',
+      formula: '[S + works (实义动词肯定)] , [doesn’t + 代词 it] ?',
+      sentence: 'The authentication service works as expected, doesn’t it?',
+      translation: '身份认证服务运行符合预期，对吧？',
+      parts: [
+        { text: 'The auth service', role: '主语 (S)', type: 'subject', detail: '认证服务主体' },
+        { text: 'works', role: '单三实动词 (V)', type: 'verb', detail: '肯定形式运行' },
+        { text: '[as expected]', role: '方式状语', type: 'adverbial', detail: '如预期那样' },
+        { text: 'doesn’t it?', role: '反义疑问尾巴', type: 'complement', detail: '否定助动词 doesn’t + 代词 it' },
+      ],
+      explanation: '前半句为实义动词单三肯定（works），后半句反问小尾巴必须使用否定助动词 doesn’t，并用 it 代替 service。',
+      itAnalogy: '类比断言与二重核验：assert(service.status === "OK", "Please confirm");',
+    },
+  ],
+  transforms: [
+    {
+      id: 'tf-skeleton-inversion',
+      badge: '形态演变',
+      title: '一般疑问句 ➔ 特殊疑问句演变流水线',
+      desc: '掌握疑问句的层级演变过程：陈述 ➔ 一般疑问 ➔ 特殊疑问词置顶。',
+      from: {
+        type: '一般疑问句 (Yes/No Question)',
+        badgeColor: 'blue',
+        sentence: 'Did you fix the database deadlock?',
+        translation: '你修复了这个数据库死锁吗？',
+        parts: [
+          { text: 'Did', role: '助动词提前', status: 'moved', note: '过去时 did 提至句首' },
+          { text: 'you', role: '主语', status: 'normal' },
+          { text: 'fix', role: '动词原形', status: 'changed', note: '去 ed 恢复原形' },
+          { text: 'the deadlock?', role: '宾语', status: 'normal' },
+        ],
+      },
+      to: {
+        type: '特殊疑问句 (Wh- Question)',
+        badgeColor: 'purple',
+        sentence: 'How did you fix the database deadlock?',
+        translation: '你是怎么修复这个数据库死锁的？',
+        parts: [
+          { text: 'How', role: '特殊疑问词置顶', status: 'added', note: '询问方式置于句首第一位' },
+          { text: 'did you fix', role: '一般疑问句语序', status: 'normal', note: '保持倒装结构不变' },
+          { text: 'the deadlock?', role: '宾语', status: 'normal' },
+        ],
+      },
+      transitionRules: [
+        '1. 第一层：陈述句借出助动词 did 倒装构造一般疑问句（动词恢复原形 fix）',
+        '2. 第二层：根据询问重点选定特殊疑问词（How 如何 / Why 为什么 / When 何时）置于全句最顶端',
+        '3. 特殊疑问词后方严格保持一般疑问句的倒装语序！',
+      ],
+      itAnalogy: '类比构造查询参数：buildQuery({ mode: "How", filter: "deadlock", tense: "PAST" });',
+    },
+  ],
+  builders: [
+    {
+      id: 'b-skeleton-wh-builder',
+      title: '拼装特殊疑问句',
+      instruction: '组装问句：「你是怎么修复这个内存泄漏的？」',
+      words: ['How', 'did', 'you', 'fix', 'the memory leak?'],
+      targetSentence: 'How did you fix the memory leak?',
+      explanation: '特殊疑问词 How 放在最开头，后接一般疑问句语序 did you fix。',
+    },
+  ],
+  quizzes: [
+    {
+      id: 'q-tag-question-quiz',
+      title: '反义疑问句挑战',
+      question: '如果要表达「这个接口能支持高并发，对吧？」，正确的反义疑问句尾巴是：',
+      options: [
+        { text: 'The API supports high concurrency, isn’t it?', isCorrect: false, explanation: '错误：supports 是实义动词，不可借用系动词 isn’t。' },
+        { text: 'The API supports high concurrency, doesn’t it?', isCorrect: true, explanation: '正确！主句是实义动词单三肯定（supports），尾巴使用单三否定助动词 doesn’t it。' },
+        { text: 'The API supports high concurrency, does it?', isCorrect: false, explanation: '错误：前肯后否，后半句应为否定。' },
+      ],
+    },
+  ],
+  tables: [
+    {
+      title: '英语五大基本句式特征对照表 (Basic Sentence Types)',
+      headers: ['句式类别', '核心功能', '语序特征', '典型例句'],
+      rows: [
+        ['陈述句 (Statement)', '陈述客观事实或状态', '主语 + 谓语 (+ 宾语/表语)', 'The server is running.'],
+        ['一般疑问句 (Yes/No Question)', '提问是非，用 Yes/No 作答', 'Be/助动词 + 主语 + 动词原形?', 'Is the server running? / Does it work?'],
+        ['特殊疑问句 (Wh- Question)', '询问时间/地点/原因/方式等细节', 'Wh-疑问词 + 一般疑问句语序?', 'Why did the server crash?'],
+        ['反问句 (Rhetorical Question)', '无需对方回答，用于加强肯定/否定语气', '带有强烈感情色彩的疑问句', 'Who does not know this standard? (谁不知道此规范呢？)'],
+        ['反义疑问句 (Tag Question)', '前肯后否/前否后肯，向对方核实确认', '陈述句 + 镜像小尾巴?', 'The test passed, didn’t it?'],
+      ],
+    },
+  ],
+};
