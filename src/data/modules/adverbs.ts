@@ -15,19 +15,69 @@ export const adverbsTopic: TopicContent = {
       id: 'd-adverb-placement-order',
       title: '频度副词摆放黄金位置流水线 (Be后实前助动中)',
       desc: '频度副词（always, usually, often, rarely, never）在句子中的精准插槽位置法则',
-      code: `graph LR
-    Slot["频度副词插槽位置 (Placement Rules)"] --> S1["1. Be 动词之后\nThe node is ALWAYS active."]
-    Slot --> S2["2. 实义动词之前\nOur team REGULARLY reviews PRs."]
-    Slot --> S3["3. 助动词与实义动词之间\nWe have NEVER encountered this deadlock before."]`,
+      code: `graph TD
+    Slot["🧭 <b>频度副词三大插槽 (Placement Rules)</b><br/>口诀：Be后 · 实前 · 助动中"]
+    Slot --> S1["1️⃣ <b>Be 动词之后</b><br/>be + ADVERB"]
+    Slot --> S2["2️⃣ <b>实义动词之前</b><br/>ADVERB + verb"]
+    Slot --> S3["3️⃣ <b>助动词与实义动词之间</b><br/>aux + ADVERB + verb"]`,
+      details: [
+        {
+          label: '插槽 1: Be 动词之后 (be + adverb)',
+          enPhrase: 'The node is ALWAYS active / We are OFTEN on call.',
+          zhMeaning: '紧贴 be 动词后方，如 The primary cluster is usually online.',
+          tag: '位置法则',
+        },
+        {
+          label: '插槽 2: 实义动词之前 (adverb + verb)',
+          enPhrase: 'Our team REGULARLY reviews pull requests.',
+          zhMeaning: '紧贴实义动作前方，如 He rarely commits code on weekends.',
+          tag: '位置法则',
+        },
+        {
+          label: '插槽 3: 助动词之间 (aux + adverb + verb)',
+          enPhrase: 'We have NEVER encountered this deadlock before.',
+          zhMeaning: '夹在助动词 (have/will/can) 与主体动作之间，如 I can hardly hear you.',
+          tag: '位置法则',
+        },
+      ],
     },
     {
       id: 'd-hard-vs-hardly',
       title: '极度危险形近副词语义反转谱 (hard vs hardly / late vs lately)',
       desc: '加了 -ly 导致语义发生 180 度大反转的典型语法陷阱',
       code: `graph TD
-    P1["hard (猛烈/努力地 · 肯定)\nWe worked hard. (我们努力工作)"] --- P2["hardly (几乎完全不 · 绝对否定！)\nWe hardly worked. (我们几乎没工作！)"]
-    P3["late (迟到/延误 · 时间晚)\nThe train arrived late."] --- P4["lately (近来/最近 = recently)\nHave you deployed lately?"]
-    P5["high (物理空间高)\nThe plane flew high."] --- P6["highly (极度/高度推崇抽象)\nThis tool is highly scalable."]`,
+    subgraph Pair1["努力 (hard) vs 几乎不 (hardly)"]
+        H1["💪 <b>hard</b><br/>努力/高强度 (肯定)"]
+        H2["🚫 <b>hardly</b><br/>几乎完全不 (绝对否定)"]
+    end
+    subgraph Pair2["迟到 (late) vs 最近 (lately)"]
+        L1["⏰ <b>late</b><br/>时间延误/迟到"]
+        L2["📅 <b>lately</b><br/>近来/最近 (recently)"]
+    end
+    subgraph Pair3["空间高 (high) vs 抽象高 (highly)"]
+        HI1["☁️ <b>high</b><br/>物理空间高度"]
+        HI2["⭐ <b>highly</b><br/>高度推崇/极度抽象"]
+    end`,
+      details: [
+        {
+          label: 'hard vs hardly',
+          enPhrase: 'We worked hard (我们努力工作) VS We hardly worked (我们几乎没工作！)',
+          zhMeaning: 'hardly 本身就是否定词，句中无需再加 not，主谓倒装时提句首。',
+          tag: '反转陷阱',
+        },
+        {
+          label: 'late vs lately',
+          enPhrase: 'The build finished late (构建晚了) VS Have you deployed lately? (最近有发布吗？)',
+          zhMeaning: 'late 指时间迟到；lately 指“最近时间段”，常配合现在完成时。',
+          tag: '反转陷阱',
+        },
+        {
+          label: 'high vs highly',
+          enPhrase: 'The drone flew high (飞得高) VS The architecture is highly scalable (高可扩展)',
+          zhMeaning: 'high 指物理高度；highly 指抽象程度极高、备受赞誉。',
+          tag: '反转陷阱',
+        },
+      ],
     },
   ],
   formulas: [

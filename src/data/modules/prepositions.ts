@@ -16,15 +16,72 @@ export const prepositionsTopic: TopicContent = {
       title: '空间介词几何拓扑维度模型 (0D / 2D / 3D Topology)',
       desc: '介词不是随机背诵的碎片，而是人类大脑基于空间物理维度的投影',
       code: `graph LR
-    P0D["0D 几何离散点\nat (在某一点)\nat port 8080 / at 9:00 AM\nat the intersection"] --> P2D["2D 连续接触面\non (在某一面)\non the screen / on the desk\non Monday (特定天)"]
-    P2D --> P3D["3D 封闭容器包络\nin (在体/内部)\nin the datacenter / in China\nin 2026 (宽泛时段)"]`,
+    P0D["📍 <b>0D 几何离散点 (at)</b><br/>Point / Instant"]
+    -->|维度升至表面| P2D["📄 <b>2D 连续接触面 (on)</b><br/>Surface / Specific Day"]
+    -->|维度升至空间| P3D["📦 <b>3D 封闭容器体 (in)</b><br/>Volume / Broad Period"]`,
+      details: [
+        {
+          label: '0D 离散点 (at)',
+          enPhrase: 'at port 8080 / at 9:00 AM / at the bus stop',
+          zhMeaning: '无长宽高的绝对坐标点，时间上表示精确瞬间，空间上表示离散点。',
+          tag: '几何维度',
+        },
+        {
+          label: '2D 接触面 (on)',
+          enPhrase: 'on the screen / on the desk / on Monday',
+          zhMeaning: '依附于表面接触，时间上表示特定某一天（日历切面）。',
+          tag: '几何维度',
+        },
+        {
+          label: '3D 容积体 (in)',
+          enPhrase: 'in the server room / in China / in 2026',
+          zhMeaning: '具有包络封闭感的内部空间，时间上表示漫长年份、月份或季度。',
+          tag: '几何维度',
+        },
+      ],
     },
     {
       id: 'd-prep-dynamic-vectors',
       title: '动态空间位移向量模型 (Motion Vectors)',
       desc: '静态存在 vs 动态穿透向量：through (3D 穿透体内) vs across (2D 横跨表面) vs into (侵入内部)',
       code: `graph TD
-    Static["静态空间存在\nin (在内部) / on (在表面)"] --> Motion["动态位移向量\ninto (由外部跃入内部: log into)\nonto (由空间跃至表面: upload onto)\nthrough (穿透3D管道: traffic through firewall)\nacross (横越2D平面: requests across nodes)"]`,
+    Static["🏠 <b>静态空间位置 (Static)</b><br/>in (在内部) · on (在表面)"]
+    -->|引入动能位移| Motion["🚀 <b>动态穿透向量 (Dynamic Motion)</b>"]
+
+    subgraph Vectors["四大动态位移模式"]
+        V1["📥 <b>into</b>: 外部跃入内部 (log into)"]
+        V2["📤 <b>onto</b>: 空间跃至表面 (upload onto)"]
+        V3["⚡ <b>through</b>: 3D 穿透管道 (through firewall)"]
+        V4["🌊 <b>across</b>: 2D 平面横跨 (across nodes)"]
+    end
+
+    Motion --> Vectors`,
+      details: [
+        {
+          label: 'into: 空间侵入向量',
+          enPhrase: 'The user logs INTO the system / Insert values INTO database.',
+          zhMeaning: '由外部边界向封闭内部跃进的动态过程。',
+          tag: '位移向量',
+        },
+        {
+          label: 'onto: 表面落定向量',
+          enPhrase: 'Deploy artifacts ONTO the host / Copy files ONTO desktop.',
+          zhMeaning: '由悬浮或外部降落至特定接触表面。',
+          tag: '位移向量',
+        },
+        {
+          label: 'through: 3D 管道穿透',
+          enPhrase: 'Network packets pass THROUGH the firewall safely.',
+          zhMeaning: '从立体封闭结构（隧道、防火墙、管道）一端穿入并由另一端穿出。',
+          tag: '位移向量',
+        },
+        {
+          label: 'across: 2D 平面横跨',
+          enPhrase: 'Distribute requests ACROSS multiple cluster nodes.',
+          zhMeaning: '在平面或二维网格表面从一侧跨越到另一侧。',
+          tag: '位移向量',
+        },
+      ],
     },
   ],
   formulas: [

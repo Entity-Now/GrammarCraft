@@ -16,9 +16,36 @@ export const modalVerbsTopic: TopicContent = {
       title: '情态动词推测确定度概率梯形图 (The Certainty & Probability Spectrum)',
       desc: '从 100% 确定事实到 20% 极其微弱可能，情态动词赋予句子精确的情感与逻辑概率标尺',
       code: `graph TD
-    P100["100% 绝对确定 / 逻辑必然\nmust (一定是) / will (必定会)"] --> P80["80% 很有可能 / 常理推测\nshould / ought to (理应如此)"]
-    P80 --> P50["50% 客观可能 / 许可\ncan / could / may (或许可能/允许)"]
-    P50 --> P20["20% 微弱可能 / 极其渺茫\nmight (也许/微弱偶发)"]`,
+    P100["💯 <b>100% 绝对确定 (Certainty)</b><br/>must / will"]
+    -->|把握递减| P80["🎯 <b>80% 常理推测 (Probability)</b><br/>should / ought to"]
+    -->|把握递减| P50["⚖️ <b>50% 客观可能 (Possibility)</b><br/>can / could / may"]
+    -->|把握递减| P20["🌫️ <b>20% 微弱侥幸 (Remote)</b><br/>might"]`,
+      details: [
+        {
+          label: '100% 必然确定 (Certainty)',
+          enPhrase: 'It must be a network glitch / The transaction will commit.',
+          zhMeaning: '逻辑必然或板上钉钉的事实，表达毫无疑问的肯定判断。',
+          tag: '确定度阶梯',
+        },
+        {
+          label: '80% 常理推测 (Probability)',
+          enPhrase: 'The build should succeed / The cache ought to expire shortly.',
+          zhMeaning: '根据常理、设计契约推算应有的结果，若不发生则属于异常。',
+          tag: '确定度阶梯',
+        },
+        {
+          label: '50% 客观可能 (Possibility)',
+          enPhrase: 'A race condition may occur under high concurrency.',
+          zhMeaning: '客观存在发生机率，或用于礼貌征求许可（May I...?）。',
+          tag: '确定度阶梯',
+        },
+        {
+          label: '20% 微弱可能 (Remote Possibility)',
+          enPhrase: 'A retry might fix it, but root cause remains unknown.',
+          zhMeaning: '极为渺茫的微弱猜测，说话人心中没有十足底气。',
+          tag: '确定度阶梯',
+        },
+      ],
     },
   ],
   formulas: [

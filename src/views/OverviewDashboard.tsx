@@ -46,11 +46,19 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
 
           <div className="pt-2 flex flex-wrap gap-3">
             <button
-              onClick={() => onSelectTopic('thinking-debug')}
+              onClick={() => onSelectTopic('grammar-concepts')}
               className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold shadow-md shadow-emerald-500/25 flex items-center gap-2 transition-all cursor-pointer"
             >
-              <span>从《中英思维差异与Debug法》启程</span>
+              <span>从第 1 页《英语核心语法概念大典》启程</span>
               <ArrowRight size={14} />
+            </button>
+
+            <button
+              onClick={() => onSelectTopic('thinking-debug')}
+              className="px-4 py-2.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-200 text-xs font-semibold transition-all flex items-center gap-2 cursor-pointer"
+            >
+              <Sparkles size={14} />
+              <span>中英思维 6 维差异</span>
             </button>
 
             <button
@@ -67,7 +75,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
       {/* 4 Feature Highlights */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
         <div className="glass-card p-4 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
-          <span className="text-2xl font-black text-emerald-500 font-mono block">19</span>
+          <span className="text-2xl font-black text-emerald-500 font-mono block">{totalTopics}</span>
           <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200 mt-1 block">核心语法专题</span>
           <span className="text-[10px] text-zinc-400 block mt-0.5">基础至高阶全覆盖</span>
         </div>

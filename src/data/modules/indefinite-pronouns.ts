@@ -16,16 +16,83 @@ export const indefinitePronounsTopic: TopicContent = {
       title: '4×4 复合不定代词矩阵图谱 (The 4×4 Indefinite Matrix)',
       desc: '由 4 大前缀修饰符 (some / any / no / every) 与 4 大实体后缀 (-thing / -body / -one / -where) 严密交织构成的 16 个核心代词',
       code: `graph LR
-    Prefix["前缀特征\nsome- (肯定/期待肯定)\nany- (否定/疑问/任意)\nno- (彻底否定/空值 null)\nevery- (全体每一)"] --- Suffix["实体后缀\n-thing (客体事物)\n-body / -one (人物主体)\n-where (空间位置)"]
-    Suffix --> P16["16 个复合代词全家桶\n- 语法特征：全员强制单数谓语！\n- 形容词强制后置修饰！"]`,
+    subgraph Prefixes["4 大前缀修饰符 (Prefixes)"]
+        P1["🟢 <b>some-</b><br/>肯定/期许"]
+        P2["🟡 <b>any-</b><br/>任意/否定/疑问"]
+        P3["🔴 <b>no-</b><br/>彻底否定/null"]
+        P4["🔵 <b>every-</b><br/>全体成员每一"]
+    end
+
+    subgraph Suffixes["4 大实体插槽 (Suffixes)"]
+        S1["📦 <b>-thing</b><br/>事物客体"]
+        S2["👤 <b>-body / -one</b><br/>人物实体"]
+        S3["📍 <b>-where</b><br/>空间位置"]
+    end
+
+    Prefixes === Grid["🧩 <b>16 个复合不定代词</b><br/>全员单数谓语 · 形容词强制后置"]
+    Suffixes === Grid`,
+      details: [
+        {
+          label: '前缀语义特征',
+          enPhrase: 'something (肯定) / anything (疑问/任意) / nothing (空) / everything (全体)',
+          zhMeaning: '前缀决定了命题的布尔逻辑（肯定、任意、非空或全量）。',
+          tag: '前缀修饰',
+        },
+        {
+          label: '实体后缀维度',
+          enPhrase: '-thing (物体) / -body, -one (人) / -where (空间地点)',
+          zhMeaning: '后缀决定所指实体的物理或抽象类型。',
+          tag: '实体后缀',
+        },
+        {
+          label: '黄金铁律 1: 强制单数谓语',
+          enPhrase: 'Everyone IS ready / Nothing HAS changed.',
+          zhMeaning: '哪怕表示“每个人(everyone)”，语法上视作一个集合整体，严格配单数动词。',
+          tag: '语法铁律',
+        },
+        {
+          label: '黄金铁律 2: 形容词强制后置',
+          enPhrase: 'something special (O) / special something (X)',
+          zhMeaning: '所有修饰复合不定代词的形容词，必须 100% 放在代词后方！',
+          tag: '语法铁律',
+        },
+      ],
     },
     {
       id: 'd-quantity-spectrum',
       title: '两者 (Two) vs 三者及以上 (Three+) 数量不定代词对应图谱',
       desc: '英语语法对“两者”与“多者”拥有极其严苛的专用代词分流体系',
       code: `graph TD
-    Scope["数量范畴判定"] --> Two["两者范畴 (Two)\nboth (两者都: 肯定复数)\neither (两者中任意一个: 单数)\nneither (两者都不: 否定单数)"]
-    Scope --> Multi["三者及以上范畴 (3+)\nall (全员: 肯定)\nany (任何一个: 单数)\nnone (全都不: 否定)"]`,
+    Scope["🎯 <b>数量范畴二叉树 (Quantity Scope)</b>"]
+
+    subgraph Two["两者专属范畴 (Two Only)"]
+        B1["✅ <b>both</b><br/>两者都 (肯定复数)"]
+        E1["🔀 <b>either</b><br/>二者之一 (单数)"]
+        N1["❌ <b>neither</b><br/>二者皆非 (否定单数)"]
+    end
+
+    subgraph Multi["三者及以上范畴 (Three+)"]
+        A1["👥 <b>all</b><br/>全员 (肯定)"]
+        AN1["🔀 <b>any</b><br/>任意一个 (单数)"]
+        NO1["❌ <b>none</b><br/>全都不 (彻底否定)"]
+    end
+
+    Scope --> Two
+    Scope --> Multi`,
+      details: [
+        {
+          label: '两者专属 (Two Only)',
+          enPhrase: 'Both nodes are green / Either option works / Neither server responded.',
+          zhMeaning: '严格用于两者之间，注意 neither 后面动词一般用单数。',
+          tag: '两者限定',
+        },
+        {
+          label: '三者及以上 (Three+)',
+          enPhrase: 'All services are operational / Any developer can submit PRs / None of them failed.',
+          zhMeaning: '用于群体范畴（3个或更多个体），表达全称肯定、任意抽样与全盘否定。',
+          tag: '多者群体',
+        },
+      ],
     },
   ],
   formulas: [

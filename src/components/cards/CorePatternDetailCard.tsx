@@ -10,17 +10,21 @@ import {
   Check,
   ChevronDown,
   ChevronUp,
+  Lightbulb,
 } from 'lucide-react';
 import type { CorePatternDetail } from '../../types';
 import { TTSButton } from '../audio/TTSButton';
 import { SentenceSkeletonCard } from './SentenceSkeletonCard';
 import { QuizCard } from './QuizCard';
+import { useLearningMode } from '../../context/LearningModeContext';
 
 interface CorePatternDetailCardProps {
   pattern: CorePatternDetail;
 }
 
 export const CorePatternDetailCard: React.FC<CorePatternDetailCardProps> = ({ pattern }) => {
+  const { isBeginner } = useLearningMode();
+  const [showGeekAnalogy, setShowGeekAnalogy] = useState(false);
   const [activeTemplateIdx, setActiveTemplateIdx] = useState(0);
   const [showSkeleton, setShowSkeleton] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -95,15 +99,50 @@ export const CorePatternDetailCard: React.FC<CorePatternDetailCardProps> = ({ pa
           </p>
         </div>
 
-        {/* IT Analogy */}
-        <div className="p-4 rounded-2xl bg-zinc-900 text-zinc-200 dark:bg-black/60 border border-zinc-800 space-y-1.5">
-          <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-400 font-mono">
-            <Terminal size={14} />
-            <span>IT / 程序员全栈思维类比</span>
+        {/* Beginner-friendly Analogy */}
+        {pattern.beginnerAnalogy && (
+          <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200/80 dark:border-amber-800/60 text-xs text-amber-950 dark:text-amber-200 space-y-1.5">
+            <div className="flex items-center gap-1.5 font-bold text-amber-800 dark:text-amber-300">
+              <Lightbulb size={15} />
+              <span>💡 小白生活化直觉记忆 (Life Analogy)</span>
+            </div>
+            <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
+              {pattern.beginnerAnalogy}
+            </p>
           </div>
-          <p className="text-xs text-zinc-300 font-mono leading-relaxed">
-            {pattern.itAnalogy}
-          </p>
+        )}
+
+        {/* IT Analogy */}
+        <div className="rounded-2xl border border-zinc-200/60 dark:border-zinc-800 overflow-hidden text-xs">
+          {isBeginner ? (
+            <div>
+              <button
+                onClick={() => setShowGeekAnalogy(!showGeekAnalogy)}
+                className="w-full p-3.5 bg-zinc-100/80 dark:bg-zinc-800/60 hover:bg-zinc-200/80 dark:hover:bg-zinc-700/60 flex items-center justify-between text-xs font-medium text-zinc-500 dark:text-zinc-400 transition-colors cursor-pointer"
+              >
+                <div className="flex items-center gap-1.5 font-mono">
+                  <Terminal size={14} className="text-emerald-500" />
+                  <span>极客代码视角：IT / 程序员思维类比 (可展开)</span>
+                </div>
+                {showGeekAnalogy ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+              </button>
+              {showGeekAnalogy && (
+                <div className="p-4 bg-zinc-900 text-zinc-200 dark:bg-black/70 font-mono leading-relaxed border-t border-zinc-800">
+                  {pattern.itAnalogy}
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="p-4 bg-zinc-900 text-zinc-200 dark:bg-black/60 space-y-1.5">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-400 font-mono">
+                <Terminal size={14} />
+                <span>IT / 程序员全栈思维类比</span>
+              </div>
+              <p className="text-xs text-zinc-300 font-mono leading-relaxed">
+                {pattern.itAnalogy}
+              </p>
+            </div>
+          )}
         </div>
       </div>
 

@@ -15,18 +15,78 @@ export const tensesTopic: TopicContent = {
       id: 'd-tense-matrix',
       title: '时态正交坐标系：时间轴 (Time) × 动作状态 (Aspect)',
       desc: '时态不是死记硬背的规则，而是由 4 种时间点与 4 种动作状态严密笛卡尔积正交而成的坐标系',
-      code: `graph LR
-    Time["时间轴 (Time)\n过去 (Past) ➔ 现在 (Present) ➔ 将来 (Future)"] --- Matrix["16 种时态正交网格\nTime × Aspect"]
-    Aspect["动作状态 (Aspect)\n一般态 (Simple) · 常态/事实\n进行态 (Continuous) · 正在流沙\n完成态 (Perfect) · 影响延续\n完成进行态 (Perfect Continuous) · 持续至今未停"] --- Matrix`,
+      code: `graph TD
+    subgraph Time["横向时间维度 · Time Dimension"]
+        T1["⏳ <b>过去 (Past)</b><br/>历史已终结"]
+        T2["⏱️ <b>现在 (Present)</b><br/>当前常态/此刻"]
+        T3["🚀 <b>将来 (Future)</b><br/>未发生预测"]
+    end
+
+    subgraph Aspect["纵向体态维度 · Aspect State"]
+        A1["🔹 <b>一般态 (Simple)</b><br/>客观常态事实"]
+        A2["🌊 <b>进行态 (Continuous)</b><br/>正在发生的流动切片"]
+        A3["🏆 <b>完成态 (Perfect)</b><br/>阶段总结与影响延续"]
+        A4["🔄 <b>完成进行态 (Perfect Continuous)</b><br/>持续至今未曾停歇"]
+    end
+
+    Time === Grid["🎯 <b>16 种正交时态网格 (Tense Matrix)</b><br/>Time × Aspect"]
+    Aspect === Grid`,
+      details: [
+        {
+          label: '一般态 (Simple Aspect)',
+          enPhrase: 'do / does / did — Permanent Facts & Habits',
+          zhMeaning: '客观事实或常规习惯：如 The server runs on Linux / I learned C#.',
+          tag: '动作体态',
+        },
+        {
+          label: '进行态 (Continuous Aspect)',
+          enPhrase: 'be + doing — Ongoing Actions in Motion',
+          zhMeaning: '正在发生的流沙切片：如 The engine is compiling the assets right now.',
+          tag: '动作体态',
+        },
+        {
+          label: '完成态 (Perfect Aspect)',
+          enPhrase: 'have/has/had + done — Prior Completion with Current Impact',
+          zhMeaning: '过去发生但对现在/过去某点造成实质结果：如 We have resolved the deadlock.',
+          tag: '动作体态',
+        },
+        {
+          label: '完成进行态 (Perfect Continuous)',
+          enPhrase: 'have been doing — Unbroken Duration Until Now',
+          zhMeaning: '不间断长时段持续：如 The telemetry worker has been recording logs for 3 hours.',
+          tag: '动作体态',
+        },
+      ],
     },
     {
       id: 'd-tense-timeline-flow',
       title: '三大核心时态在时间轴上的物理投影',
       desc: '对比一般过去时（过去孤立切片）、现在完成时（跨越延伸）与过去完成时（过去的过去）',
       code: `graph LR
-    PastPast["过去的过去 (Past Perfect)\nhad done\n(备份在断电前已完成)"] --> Past["过去某点 (Simple Past)\ndid / was\n(昨晚8点停电事件)"]
-    Past --> Now["当前时刻 (Present)\nnow / is\n(此刻系统已恢复)"]
-    Past -.->|持续跨越至今| Now`,
+    PastPast["⏪ <b>过去的过去 (Past Perfect)</b><br/>had done"]
+    -->|先行发生 Prior to| Past["◀️ <b>过去某点 (Simple Past)</b><br/>did / was"]
+    -->|推进至此刻 Progress to| Now["⏺️ <b>当前时刻 (Present)</b><br/>now / is"]
+    Past -.->|持续跨越至今 (have done)| Now`,
+      details: [
+        {
+          label: '过去完成时 (Past Perfect)',
+          enPhrase: 'The backup had finished before the power failed.',
+          zhMeaning: '过去的过去：断电（过去点）之前，备份早已完成（先行终结）。',
+          tag: '时序先行',
+        },
+        {
+          label: '一般过去时 (Simple Past)',
+          enPhrase: 'The power cut occurred at 8:00 PM yesterday.',
+          zhMeaning: '孤立过去切片：动作在过去特定时间发生并随之终结，和现在无关。',
+          tag: '时间切片',
+        },
+        {
+          label: '现在完成时 (Present Perfect)',
+          enPhrase: 'We have restored all critical services since the reboot.',
+          zhMeaning: '跨越延续：从重启那一刻一直延续至今，关键服务已恢复可用。',
+          tag: '时序贯穿',
+        },
+      ],
     },
   ],
   formulas: [

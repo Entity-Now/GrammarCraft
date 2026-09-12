@@ -12,6 +12,7 @@ import {
   Check,
 } from 'lucide-react';
 import { useTheme, type AccentColor } from '../../context/ThemeContext';
+import { useLearningMode } from '../../context/LearningModeContext';
 
 interface HeaderProps {
   currentView: 'topics' | 'practice' | 'tools' | 'dashboard';
@@ -25,6 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenSearch,
 }) => {
   const { isDark, accent, setAccent, toggleDark } = useTheme();
+  const { isBeginner, toggleMode } = useLearningMode();
   const [showAccentPicker, setShowAccentPicker] = useState(false);
 
   const accentOptions: { id: AccentColor; name: string; color: string }[] = [
@@ -111,6 +113,22 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Right: Search, Theme & Accent controls */}
         <div className="flex items-center gap-2">
+          {/* Learning Mode Switcher (小白通俗 / 极客技术) */}
+          <button
+            onClick={toggleMode}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border transition-all text-xs font-semibold cursor-pointer ${
+              isBeginner
+                ? 'bg-amber-500/10 border-amber-500/30 text-amber-700 dark:text-amber-400 hover:bg-amber-500/20 shadow-sm'
+                : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-500/20 shadow-sm'
+            }`}
+            title={isBeginner ? '当前为【通俗小白模式】，点击切换为【极客开发模式】' : '当前为【极客开发模式】，点击切换为【通俗小白模式】'}
+          >
+            <span className="text-sm leading-none">{isBeginner ? '👶' : '⚡'}</span>
+            <span className="font-bold">
+              {isBeginner ? '小白模式' : '极客模式'}
+            </span>
+          </button>
+
           {/* Quick Search Button */}
           <button
             onClick={onOpenSearch}

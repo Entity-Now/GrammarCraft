@@ -12,6 +12,8 @@ import {
   Bug,
   GitBranch,
   Table,
+  BookOpen,
+  MessageSquareQuote,
 } from 'lucide-react';
 import type { TopicContent, TopicMeta } from '../types';
 import { WordCard } from '../components/cards/WordCard';
@@ -244,6 +246,34 @@ export const TopicDetailView: React.FC<TopicDetailViewProps> = ({
               <span>速查表 ({counts.tables})</span>
             </button>
           )}
+
+          {counts.words > 0 && (
+            <button
+              onClick={() => setFilterType('words')}
+              className={`px-3 py-1.5 rounded-lg font-medium transition-all shrink-0 flex items-center gap-1 cursor-pointer ${
+                filterType === 'words'
+                  ? 'bg-emerald-500 text-white shadow-sm'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+              }`}
+            >
+              <BookOpen size={13} />
+              <span>核心术语概念 ({counts.words})</span>
+            </button>
+          )}
+
+          {counts.expressions > 0 && (
+            <button
+              onClick={() => setFilterType('expressions')}
+              className={`px-3 py-1.5 rounded-lg font-medium transition-all shrink-0 flex items-center gap-1 cursor-pointer ${
+                filterType === 'expressions'
+                  ? 'bg-emerald-500 text-white shadow-sm'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+              }`}
+            >
+              <MessageSquareQuote size={13} />
+              <span>常用短语表达 ({counts.expressions})</span>
+            </button>
+          )}
         </div>
       </div>
 
@@ -274,9 +304,9 @@ export const TopicDetailView: React.FC<TopicDetailViewProps> = ({
           </div>
         )}
 
-        {/* Formulas Grid */}
+        {/* Formulas List (1 per row for spacious building block layout) */}
         {(filterType === 'all' || filterType === 'formulas') && content.formulas && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-6">
             {content.formulas.map((f) => (
               <FormulaCard key={f.id} data={f} />
             ))}

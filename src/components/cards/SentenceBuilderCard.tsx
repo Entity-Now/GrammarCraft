@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { Blocks, CheckCircle2, RotateCcw, HelpCircle, Terminal, Sparkles } from 'lucide-react';
+import { Blocks, CheckCircle2, RotateCcw, HelpCircle, Terminal, Sparkles, Lightbulb, ChevronDown, ChevronUp } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import type { SentenceBuilderData } from '../../types';
 import { TTSButton } from '../audio/TTSButton';
+import { useLearningMode } from '../../context/LearningModeContext';
 
 interface SentenceBuilderCardProps {
   data: SentenceBuilderData;
 }
 
 export const SentenceBuilderCard: React.FC<SentenceBuilderCardProps> = ({ data }) => {
+  const { isBeginner } = useLearningMode();
+  const [showGeekAnalogy, setShowGeekAnalogy] = useState(false);
   // Shuffle words initially
   const [availableWords, setAvailableWords] = useState<string[]>(() => {
     return [...data.words].sort(() => Math.random() - 0.5);
@@ -160,10 +163,40 @@ export const SentenceBuilderCard: React.FC<SentenceBuilderCardProps> = ({ data }
           <p className="text-xs text-emerald-900/80 dark:text-emerald-200/90 leading-relaxed">
             {data.explanation}
           </p>
+
+          {data.beginnerAnalogy && (
+            <div className="p-2.5 rounded-lg bg-amber-50 dark:bg-amber-950/40 text-[11px] text-amber-900 dark:text-amber-200 flex items-start gap-1.5 border border-amber-200/60 dark:border-amber-800/40">
+              <Lightbulb size={14} className="text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+              <span>{data.beginnerAnalogy}</span>
+            </div>
+          )}
+
           {data.itAnalogy && (
-            <div className="p-2 rounded-lg bg-emerald-100/50 dark:bg-emerald-900/30 text-[11px] font-mono text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5">
-              <Terminal size={13} className="shrink-0" />
-              <span>{data.itAnalogy}</span>
+            <div className="rounded-lg border border-emerald-200/60 dark:border-emerald-900/40 overflow-hidden">
+              {isBeginner ? (
+                <div>
+                  <button
+                    onClick={() => setShowGeekAnalogy(!showGeekAnalogy)}
+                    className="w-full px-2.5 py-1.5 bg-emerald-100/40 dark:bg-emerald-900/20 hover:bg-emerald-100/60 dark:hover:bg-emerald-900/40 flex items-center justify-between text-[11px] font-mono text-emerald-800 dark:text-emerald-300 transition-colors cursor-pointer"
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <Terminal size={12} />
+                      <span>极客代码类比视角 (可展开)</span>
+                    </div>
+                    {showGeekAnalogy ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+                  </button>
+                  {showGeekAnalogy && (
+                    <div className="p-2.5 bg-zinc-900 text-zinc-200 dark:bg-black/70 font-mono text-[11px] leading-relaxed border-t border-emerald-900/30">
+                      {data.itAnalogy}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="p-2 bg-emerald-100/50 dark:bg-emerald-900/30 text-[11px] font-mono text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5">
+                  <Terminal size={13} className="shrink-0" />
+                  <span>{data.itAnalogy}</span>
+                </div>
+              )}
             </div>
           )}
         </div>

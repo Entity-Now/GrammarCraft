@@ -16,9 +16,47 @@ export const auxiliaryVerbsTopic: TopicContent = {
       title: '三大核心助动词调度器职权全景树 (The Auxiliary Verbs Architecture)',
       desc: '助动词本身无实体动作意义，专职负责为实义动词调度时态、人称、疑问、否定与被动形态',
       code: `graph TD
-    Scheduler["英语语法助动词总调度系统 (Auxiliary System)"] --> DoFam["1. do / does / did (通用调度器)\n- 一般疑问句提首倒装\n- not 否定句粘合胶水\n- 陈述句极度强调语气 (I DO agree)\n- 否定副词否定倒装 (Never did I see)"]
-    Scheduler --> BeFam["2. be 动词调度器 (am/is/are/was/were/been/being)\n- 启动进行时态 (be + doing)\n- 启动被动语态 (be + done)"]
-    Scheduler --> HaveFam["3. have 动词调度器 (have/has/had)\n- 启动完成时态 (have/has/had + done)"]`,
+    Scheduler["🎛️ <b>助动词总调度中心 (Auxiliary Scheduler)</b><br/>Grammar Dispatch Engine"]
+
+    subgraph DoGroup["do / does / did 调度域"]
+        D1["❓ 疑问句提首倒装"]
+        D2["🚫 not 否定句粘合胶水"]
+        D3["🔥 谓语强化 (I DO agree)"]
+    end
+
+    subgraph BeGroup["be 动词调度域"]
+        B1["🌊 启动进行时态 (be + doing)"]
+        B2["🛡️ 启动被动语态 (be + done)"]
+    end
+
+    subgraph HaveGroup["have 动词调度域"]
+        H1["🏆 启动完成时态 (have + done)"]
+        H2["🔄 启动完成进行 (have been doing)"]
+    end
+
+    Scheduler --> DoGroup
+    Scheduler --> BeGroup
+    Scheduler --> HaveGroup`,
+      details: [
+        {
+          label: 'do / does / did 调度域',
+          enPhrase: 'Do you need help? / I do not know / I DO believe we can fix it.',
+          zhMeaning: '接管一般疑问提首、not否定粘合与陈述句谓语动词的情感强调。',
+          tag: '助动调度',
+        },
+        {
+          label: 'be 动词调度域',
+          enPhrase: 'The server is compiling (进行) / The patch was applied (被动)',
+          zhMeaning: '赋予实义动词时间流动感（-ing 进行态）与客体被动视角（-ed 被动态）。',
+          tag: '助动调度',
+        },
+        {
+          label: 'have 动词调度域',
+          enPhrase: 'We have resolved the incident / It has been running smoothly.',
+          zhMeaning: '配合过去分词启动完成体态，记录截止到特定参考点的工作成果。',
+          tag: '助动调度',
+        },
+      ],
     },
   ],
   formulas: [

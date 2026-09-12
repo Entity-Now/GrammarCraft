@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { TTSProvider } from './context/TTSContext';
+import { LearningModeProvider } from './context/LearningModeContext';
 import { Header } from './components/layout/Header';
 import { Sidebar } from './components/layout/Sidebar';
 import { SearchModal } from './components/layout/SearchModal';
@@ -14,12 +15,12 @@ import { Menu } from 'lucide-react';
 
 function AppContent() {
   const [currentView, setCurrentView] = useState<'topics' | 'practice' | 'tools' | 'dashboard'>('topics');
-  const [activeTopicId, setActiveTopicId] = useState<string>('thinking-debug');
+  const [activeTopicId, setActiveTopicId] = useState<string>('grammar-concepts');
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   const allTopicMetas = PILLARS.flatMap((p) => p.topics);
-  const currentTopicContent = TOPIC_REGISTRY[activeTopicId] || TOPIC_REGISTRY['thinking-debug'];
+  const currentTopicContent = TOPIC_REGISTRY[activeTopicId] || TOPIC_REGISTRY['grammar-concepts'];
 
   const handleSelectTopic = (topicId: string) => {
     setActiveTopicId(topicId);
@@ -64,7 +65,7 @@ function AppContent() {
                 className="px-3.5 py-2 rounded-xl glass-card text-xs font-semibold flex items-center gap-2 text-zinc-700 dark:text-zinc-200 cursor-pointer"
               >
                 <Menu size={15} />
-                <span>展开 19 个语法专题目录</span>
+                <span>展开 {allTopicMetas.length} 个语法专题目录</span>
               </button>
             </div>
           )}
@@ -114,9 +115,11 @@ function AppContent() {
 export function App() {
   return (
     <ThemeProvider>
-      <TTSProvider>
-        <AppContent />
-      </TTSProvider>
+      <LearningModeProvider>
+        <TTSProvider>
+          <AppContent />
+        </TTSProvider>
+      </LearningModeProvider>
     </ThemeProvider>
   );
 }

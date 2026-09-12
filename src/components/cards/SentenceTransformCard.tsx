@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { ArrowRight, RefreshCw, Sparkles, Terminal, Check } from 'lucide-react';
+import { ArrowRight, RefreshCw, Sparkles, Terminal, Check, ChevronDown, ChevronUp, Lightbulb } from 'lucide-react';
 import type { SentenceTransformData, TransformStage } from '../../types';
 import { TTSButton } from '../audio/TTSButton';
+import { useLearningMode } from '../../context/LearningModeContext';
 
 interface SentenceTransformCardProps {
   data: SentenceTransformData;
 }
 
 export const SentenceTransformCard: React.FC<SentenceTransformCardProps> = ({ data }) => {
+  const { isBeginner } = useLearningMode();
+  const [showGeekAnalogy, setShowGeekAnalogy] = useState(false);
   const [activeStage, setActiveStage] = useState<'both' | 'from' | 'to' | 'additional'>('both');
 
   const getStatusBadge = (status: string) => {
@@ -108,18 +111,55 @@ export const SentenceTransformCard: React.FC<SentenceTransformCardProps> = ({ da
         </ul>
       </div>
 
-      {/* IT Analogy */}
-      {data.itAnalogy && (
-        <div className="p-3 rounded-xl bg-zinc-900 text-zinc-200 dark:bg-black/60 border border-zinc-800 text-xs flex items-start gap-2.5">
-          <Terminal size={14} className="text-emerald-400 shrink-0 mt-0.5" />
-          <div>
-            <span className="text-emerald-400 font-mono font-semibold text-[11px] block mb-0.5">
-              状态机类比 (State Transition)
+      {/* Beginner Analogy */}
+      {data.beginnerAnalogy && (
+        <div className="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200/80 dark:border-amber-800/60 text-xs text-amber-950 dark:text-amber-200 flex items-start gap-2.5">
+          <Lightbulb size={16} className="text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+          <div className="space-y-1">
+            <span className="text-amber-800 dark:text-amber-300 font-bold text-[11px] block">
+              💡 小白秒懂变身法则 (Plain Rule)
             </span>
-            <p className="font-mono text-zinc-300 text-[11px] leading-relaxed">
-              {data.itAnalogy}
+            <p className="text-zinc-700 dark:text-zinc-300 text-xs leading-relaxed">
+              {data.beginnerAnalogy}
             </p>
           </div>
+        </div>
+      )}
+
+      {/* IT Analogy */}
+      {data.itAnalogy && (
+        <div className="rounded-xl border border-zinc-200/60 dark:border-zinc-800 overflow-hidden text-xs">
+          {isBeginner ? (
+            <div>
+              <button
+                onClick={() => setShowGeekAnalogy(!showGeekAnalogy)}
+                className="w-full px-3 py-1.5 bg-zinc-100/80 dark:bg-zinc-800/60 hover:bg-zinc-200/80 dark:hover:bg-zinc-700/60 flex items-center justify-between text-[11px] font-medium text-zinc-500 dark:text-zinc-400 transition-colors cursor-pointer"
+              >
+                <div className="flex items-center gap-1.5">
+                  <Terminal size={13} className="text-emerald-500" />
+                  <span>极客扩展：状态机演变逻辑 (展开)</span>
+                </div>
+                {showGeekAnalogy ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
+              </button>
+              {showGeekAnalogy && (
+                <div className="p-3 bg-zinc-900 text-zinc-200 dark:bg-black/70 font-mono text-[11px] leading-relaxed border-t border-zinc-800">
+                  {data.itAnalogy}
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="p-3 bg-zinc-900 text-zinc-200 dark:bg-black/60 border border-zinc-800 flex items-start gap-2.5">
+              <Terminal size={14} className="text-emerald-400 shrink-0 mt-0.5" />
+              <div>
+                <span className="text-emerald-400 font-mono font-semibold text-[11px] block mb-0.5">
+                  状态机类比 (State Transition)
+                </span>
+                <p className="font-mono text-zinc-300 text-[11px] leading-relaxed">
+                  {data.itAnalogy}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

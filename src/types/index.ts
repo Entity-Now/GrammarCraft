@@ -68,6 +68,8 @@ export interface FormulaCardData {
   badge?: string;
   formula: string;
   desc: string;
+  coreMeaning?: string;
+  beginnerTip?: string;
   tokens?: FormulaToken[];
   example?: {
     en: string;
@@ -95,6 +97,7 @@ export interface SentenceSkeletonData {
   parts: SentencePart[];
   explanation: string;
   itAnalogy?: string;
+  beginnerAnalogy?: string;
 }
 
 export interface TransformSentencePart {
@@ -122,6 +125,7 @@ export interface SentenceTransformData {
   additional?: TransformStage;
   transitionRules: string[];
   itAnalogy?: string;
+  beginnerAnalogy?: string;
 }
 
 export interface SentenceBuilderData {
@@ -132,6 +136,7 @@ export interface SentenceBuilderData {
   targetSentence: string;
   explanation: string;
   itAnalogy?: string;
+  beginnerAnalogy?: string;
 }
 
 export interface QuizOption {
@@ -157,6 +162,14 @@ export interface GrammarCompareData {
   formula?: string;
   reason: string;
   itAnalogy?: string;
+  beginnerAnalogy?: string;
+}
+
+export interface MermaidNodeDetail {
+  label: string;
+  enPhrase: string;
+  zhMeaning: string;
+  tag?: string;
 }
 
 export interface MermaidCardData {
@@ -164,6 +177,7 @@ export interface MermaidCardData {
   title: string;
   desc?: string;
   code: string;
+  details?: MermaidNodeDetail[];
 }
 
 export interface LearningMapItem {
@@ -213,6 +227,7 @@ export interface CorePatternDetail {
   formulaDesc?: string;
   logic: string;
   itAnalogy: string;
+  beginnerAnalogy?: string;
   templates: PatternTemplate[];
   examples: {
     en: string;

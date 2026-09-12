@@ -1,4 +1,5 @@
 import type { Pillar, TopicContent } from '../types';
+import { grammarConceptsTopic } from './modules/grammar-concepts';
 import { timeDateTopic } from './modules/time-date';
 import { numbersTopic } from './modules/numbers';
 import { ordinalsTopic } from './modules/ordinals';
@@ -16,11 +17,19 @@ import { participlesTopic } from './modules/participles';
 import { tensesTopic } from './modules/tenses';
 import { thinkingDebugTopic } from './modules/thinking-debug';
 import { sentenceSkeletonTopic } from './modules/sentence-skeleton';
+import { questionsAndStatementsTopic } from './modules/questions-and-statements';
 import { adverbialClausesTopic } from './modules/adverbial-clauses';
 import { objectClausesTopic } from './modules/object-clauses';
+import { clauseConceptsTopic } from './modules/clause-concepts';
+import { nounClausesTopic } from './modules/noun-clauses';
+import { relativeClausesTopic } from './modules/relative-clauses';
 import { corePatterns20Topic } from './modules/core-patterns-20';
+import { systemDemoFlowTopic } from './modules/system-demo-flow';
+import { troubleshootingBugsTopic } from './modules/troubleshooting-bugs';
 
 export const TOPIC_REGISTRY: Record<string, TopicContent> = {
+  'grammar-concepts': grammarConceptsTopic,
+  'troubleshooting-bugs': troubleshootingBugsTopic,
   'time-date': timeDateTopic,
   'numbers': numbersTopic,
   'ordinals': ordinalsTopic,
@@ -38,19 +47,25 @@ export const TOPIC_REGISTRY: Record<string, TopicContent> = {
   'tenses': tensesTopic,
   'thinking-debug': thinkingDebugTopic,
   'sentence-skeleton': sentenceSkeletonTopic,
-  'adverbial-clauses': adverbialClausesTopic,
+  'questions-and-statements': questionsAndStatementsTopic,
+  'clause-concepts': clauseConceptsTopic,
+  'noun-clauses': nounClausesTopic,
   'object-clauses': objectClausesTopic,
+  'relative-clauses': relativeClausesTopic,
+  'adverbial-clauses': adverbialClausesTopic,
+  'system-demo-flow': systemDemoFlowTopic,
   'core-patterns-20': corePatterns20Topic,
 };
 
 export const PILLARS: Pillar[] = [
   {
     id: 'basics',
-    title: '支柱一：基础认知与时间数字',
-    enTitle: 'Basics, Time & Numbers',
-    description: '掌握日常生活与技术场景中时间、日期、数字单位与序数词的英文表达标准',
+    title: '支柱一：语法术语基石与基础认知',
+    enTitle: 'Grammar Foundations & Basics',
+    description: '通识第一课：英语所有核心语法概念大典（Be动词/谓语动词/分词/不定式/短语/句子成分），以及时间日期数字表达',
     icon: '🌱',
     topics: [
+      grammarConceptsTopic.meta,
       timeDateTopic.meta,
       numbersTopic.meta,
       ordinalsTopic.meta,
@@ -80,23 +95,29 @@ export const PILLARS: Pillar[] = [
     id: 'syntax',
     title: '支柱三：句子骨架与句式逻辑',
     enTitle: 'Sentence Skeleton & Syntax',
-    description: '中英思维差异与全栈 3 步 Debug 法，三大核心骨架，疑问形态演变与主从复合句',
+    description: '中英思维差异与全栈 3 步 Debug 法，三大核心骨架，陈述疑问句转换算法与主从复合句全家桶',
     icon: '🏗️',
     topics: [
       tensesTopic.meta,
       thinkingDebugTopic.meta,
       sentenceSkeletonTopic.meta,
-      adverbialClausesTopic.meta,
+      questionsAndStatementsTopic.meta,
+      clauseConceptsTopic.meta,
+      nounClausesTopic.meta,
       objectClausesTopic.meta,
+      relativeClausesTopic.meta,
+      adverbialClausesTopic.meta,
     ],
   },
   {
     id: 'advanced',
     title: '支柱四：高阶句型与实战思维',
     enTitle: 'Advanced Patterns & Mastery',
-    description: '五大基本句型全景、状语修饰扩展、核心名词性从句与工作英语 20 种核心句型',
+    description: '系统演示（UI/布局/按钮事件）、排错与用户支持（防火墙/环境配置/日志排查）、时序推进与工作英语20种核心句型',
     icon: '🏛️',
     topics: [
+      troubleshootingBugsTopic.meta,
+      systemDemoFlowTopic.meta,
       corePatterns20Topic.meta,
     ],
   },

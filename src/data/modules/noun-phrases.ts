@@ -15,9 +15,57 @@ export const nounPhrasesTopic: TopicContent = {
       id: 'd-noun-phrase-tree',
       title: '名词短语右倾展开参天大树模型 (The Right-Branching Tree)',
       desc: '中文所有修饰全堆在中心词左侧（左倾严重）；英文中心词率先出场，修饰语向右逐层展开（右倾架构）',
-      code: `graph LR
-    Pre["前置修饰区 (简短轻量)\n限定词 (The / Our)\n+ 形容词 (scalable)\n+ 复合名词 (cloud)"] --> Head["【核心中心词 Head Noun】\nDatabase / Service / Cluster\n(核心实体率先确立)"]
-    Head --> Post["后置修饰展开区 (右倾重型资产)\n1. 介词短语 (in the primary zone)\n2. 现在分词 (running in background)\n3. 过去分词 (deployed yesterday)\n4. 定语从句 (which ensures HA)\n5. 不定式 (to reduce costs)"]`,
+      code: `graph TD
+    Head["👑 <b>核心中心词 (Head Noun)</b><br/>Database / Service / Cluster"]
+
+    subgraph PreZone["⬅️ 前置轻量区 (Left-Branching)"]
+        Pre1["限定词 (The / Our)"]
+        Pre2["形容词 (scalable)"]
+        Pre3["前置名词 (cloud)"]
+    end
+
+    subgraph PostZone["➡️ 后置右倾重型区 (Right-Branching)"]
+        Post1["📍 介词短语 (in the primary zone)"]
+        Post2["🌊 现在分词 (running in background)"]
+        Post3["🛡️ 过去分词 (deployed yesterday)"]
+        Post4["🧩 定语从句 (which ensures HA)"]
+        Post5["🎯 不定式 (to reduce memory usage)"]
+    end
+
+    PreZone -->|修饰| Head
+    Head -->|右向逐层展开| PostZone`,
+      details: [
+        {
+          label: '前置轻量区 (Pre-modifiers)',
+          enPhrase: 'Our scalable cloud database...',
+          zhMeaning: '限定词 + 形容词 + 前置定语名词，简明扼要，快速收敛中心词范围。',
+          tag: '前置修饰',
+        },
+        {
+          label: '核心中心词 (Head Noun)',
+          enPhrase: '...database / cluster / pipeline...',
+          zhMeaning: '短语的语义核心与单复数支柱，后方所有重型从属结构均围绕它展开。',
+          tag: '核心支柱',
+        },
+        {
+          label: '后置插件 1: 介词短语',
+          enPhrase: '...database [in the primary datacenter]',
+          zhMeaning: '轻量空间/归属修饰，放在中心词正后方。',
+          tag: '后置展开',
+        },
+        {
+          label: '后置插件 2: 分词短语',
+          enPhrase: '...threads [running in background] / patch [deployed yesterday]',
+          zhMeaning: '主动进行用 -ing，被动完成用 -ed，极速修饰名词。',
+          tag: '后置展开',
+        },
+        {
+          label: '后置插件 3: 定语从句与不定式',
+          enPhrase: '...service [which ensures HA] / script [to reduce memory]',
+          zhMeaning: '重型逻辑使用 which/that 引导从句，目的动作使用 to do 不定式。',
+          tag: '后置展开',
+        },
+      ],
     },
   ],
   formulas: [

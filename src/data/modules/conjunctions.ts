@@ -16,9 +16,46 @@ export const conjunctionsTopic: TopicContent = {
       title: '英语连词三大核心家族谱系 (The 3 Conjunction Families)',
       desc: '杜绝中式逗号一逗到底：英语中连接两个完整主谓句必须显式使用连词胶水',
       code: `graph TD
-    Glue["英语连词胶水系统 (Conjunctions)"] --> FANBOYS["1. 并列连词 (FANBOYS 7 大金刚)\nFor / And / Nor / But / Or / Yet / So\n连接两个同等权重的独立主句 (SVO, and SVO)"]
-    Glue --> Sub["2. 从属连词 (Subordinating)\nbecause / although / if / unless / when\n将子句降维为修饰性状语从句"]
-    Glue --> Corr["3. 成对关联连词 (Correlative)\neither...or / neither...nor / not only...but also\n严格遵循【平行对称】与【就近原则】"]`,
+    Glue["🔗 <b>英语连词胶水系统 (Conjunctions)</b><br/>Connecting Clauses & Words"]
+
+    subgraph C1["并列连词 (Coordinating)"]
+        F1["🧩 <b>FANBOYS 7 大金刚</b><br/>For, And, Nor, But, Or, Yet, So"]
+        F2["⚖️ <b>平权独立分句</b><br/>连接独立主句 (SVO, and SVO)"]
+    end
+
+    subgraph C2["从属连词 (Subordinating)"]
+        S1["⚓ <b>降维从句引申</b><br/>because, although, if, unless"]
+        S2["📦 <b>依附主句修饰</b><br/>将从句降为状语从属成分"]
+    end
+
+    subgraph C3["关联连词 (Correlative)"]
+        R1["👯 <b>成对孪生结构</b><br/>either...or / not only...but also"]
+        R2["📐 <b>语法严格平行</b><br/>词性对称与谓语就近原则"]
+    end
+
+    Glue --> C1
+    Glue --> C2
+    Glue --> C3`,
+      details: [
+        {
+          label: '1. 并列连词 (FANBOYS 7 大金刚)',
+          enPhrase: 'The build failed, BUT we immediately located the cause.',
+          zhMeaning: '连接同等权重的两个完整主句，必须且只能用逗号后跟 FANBOYS 之一连接。',
+          tag: '并列粘合',
+        },
+        {
+          label: '2. 从属连词 (Subordinating)',
+          enPhrase: 'ALTHOUGH latency increased, the system remained responsive.',
+          zhMeaning: '引导条件、让步、原因等状语从句，从句不能单独成句，必须依附于主句。',
+          tag: '从属引导',
+        },
+        {
+          label: '3. 成对关联连词 (Correlative)',
+          enPhrase: 'We should EITHER restart the pod OR rollback the release.',
+          zhMeaning: '成双成对出现，前后连接的成分结构必须完全平行（动词对动词，名词对名词）。',
+          tag: '平行结构',
+        },
+      ],
     },
   ],
   formulas: [

@@ -15,19 +15,93 @@ export const participlesTopic: TopicContent = {
       id: 'd-participle-dual-nature',
       title: '分词双子星主动与被动状态对比图谱 (Doing vs Done)',
       desc: '分词是由动词派生出的“形容词与副词”，核心区别在于主动进行与被动完成的语义对立',
-      code: `graph LR
-    Verb["动词原形 (Verb Base)"] --> Doing["现在分词 (Present Participle: -ing)\n1. 语义特征：主动发出 (Active) + 正在进行 (Ongoing)\n2. 物理隐喻：正在飘落 the falling leaves / 发展中 developing"]
-    Verb --> Done["过去分词 (Past Participle: -ed / Done)\n1. 语义特征：被动承受 (Passive) + 已经完成 (Completed)\n2. 物理隐喻：已落地的 the fallen leaves / 发达的 developed"]`,
+      code: `graph TD
+    Verb["⚡ <b>动词原形 (Verb Base)</b><br/>Motion Core"]
+
+    subgraph Active["现在分词 (-ing · Present)"]
+        Ing1["🌊 <b>主动发出 (Active)</b>"]
+        Ing2["⏱️ <b>正在进行 (Ongoing)</b>"]
+    end
+
+    subgraph Passive["过去分词 (-ed / Done · Past)"]
+        Ed1["🛡️ <b>被动承受 (Passive)</b>"]
+        Ed2["🏁 <b>已经完成 (Completed)</b>"]
+    end
+
+    Verb --> Active
+    Verb --> Passive`,
+      details: [
+        {
+          label: '现在分词 (-ing)',
+          enPhrase: 'the falling leaves (飘落中) / a developing economy (发展中)',
+          zhMeaning: '强调动作由中心词主动发出，且此刻正处于流动进行状态。',
+          tag: '主动进行',
+        },
+        {
+          label: '过去分词 (-ed / Done)',
+          enPhrase: 'the fallen leaves (已落地) / a developed economy (发达)',
+          zhMeaning: '强调中心词作为动作受体被动承受，且动作早已经完结终结。',
+          tag: '被动完成',
+        },
+      ],
     },
     {
       id: 'd-participle-four-roles',
       title: '分词在句子中的四大语法职能图谱',
       desc: '分词虽然不能单独作主谓谓语，但在句式中拥有四项极为强悍的语法修饰功能',
       code: `graph TD
-    Roles["分词四大语法职能 (Four Roles)"] --> R1["1. 作定语 (修饰名词)\n前置: a running thread\n后置: the patch deployed yesterday"]
-    Roles --> R2["2. 作表语 (说明状态 / 心理动词)\n物令人: interesting / confusing\n人感受: interested / confused"]
-    Roles --> R3["3. 作状语 (伴随/时间/原因)\nThe server crashed, causing downtime.\nSeeing the error, I checked the logs."]
-    Roles --> R4["4. 作宾补 (说明宾语状态)\nI saw him coding.\nI found the port blocked."]`,
+    Roles["🧩 <b>分词四大语法修饰职能 (Four Roles)</b>"]
+
+    subgraph Attributive["1️⃣ 作定语 (修饰名词)"]
+        At1["前置: running threads"]
+        At2["后置: patch deployed yesterday"]
+    end
+
+    subgraph Predicative["2️⃣ 作表语 (说明状态)"]
+        Pr1["事物令人: confusing"]
+        Pr2["人物感受: confused"]
+    end
+
+    subgraph Adverbial["3️⃣ 作状语 (伴随与因果)"]
+        Adv1["伴随结果: causing downtime"]
+        Adv2["触发原因: seeing the error"]
+    end
+
+    subgraph Complement["4️⃣ 作宾补 (说明宾语状态)"]
+        Cp1["主动进行: saw him coding"]
+        Cp2["被动状态: found the port blocked"]
+    end
+
+    Roles --> Attributive
+    Roles --> Predicative
+    Roles --> Adverbial
+    Roles --> Complement`,
+      details: [
+        {
+          label: '1. 作定语 (Attributive)',
+          enPhrase: 'a running thread (单个词前置) / the patch deployed yesterday (短语后置)',
+          zhMeaning: '代替繁琐的定语从句，极度轻盈精炼。',
+          tag: '定语修饰',
+        },
+        {
+          label: '2. 作表语 (Predicative)',
+          enPhrase: 'The error is confusing / The developers were confused.',
+          zhMeaning: '-ing 指事物本身令人产生某种感觉；-ed 指人内心被动感受到该情绪。',
+          tag: '表语说明',
+        },
+        {
+          label: '3. 作状语 (Adverbial)',
+          enPhrase: 'The server crashed, causing severe downtime.',
+          zhMeaning: '优雅表达伴随动作或顺承因果结果，避免啰嗦的 and it caused...。',
+          tag: '伴随状语',
+        },
+        {
+          label: '4. 作宾补 (Object Complement)',
+          enPhrase: 'We noticed him debugging / I found the port blocked.',
+          zhMeaning: '补充说明宾语正在进行动作，或正处于被动封锁状态。',
+          tag: '宾语补足',
+        },
+      ],
     },
   ],
   formulas: [

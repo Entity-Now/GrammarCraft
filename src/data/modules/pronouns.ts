@@ -15,22 +15,100 @@ export const pronounsTopic: TopicContent = {
       id: 'd-pronoun-cases-matrix',
       title: '人称代词五大格位演变全景矩阵 (The 5 Pronoun Cases)',
       desc: '代词如同内存指针，根据其在句子调用栈中的位置（主语、动宾、介宾、所有格）自动切换格位形态',
-      code: `graph LR
-    Entity["实体对象 (Target Entity)"] --> Subj["1. 主格 (Subjective)\nI / He / She / They\n充当动作发起者"]
-    Entity --> Obj["2. 宾格 (Objective)\nme / him / her / them\n充当动词/介词受体"]
-    Entity --> Det["3. 形物代 (Determiner)\nmy / his / her / their\n依附于后续名词"]
-    Entity --> Nom["4. 名物代 (Nominal)\nmine / his / hers / theirs\n独立指代 资产+属性"]
-    Entity --> Ref["5. 反身代词 (Reflexive)\nmyself / himself / themselves\n主谓宾同一实体 / 强调"]`,
+      code: `graph TD
+    Entity["🎯 <b>实体对象 (Target Entity)</b><br/>Grammar Pointer"]
+
+    subgraph Direct["核心指代格位 (Core Cases)"]
+        Subj["1️⃣ <b>主格 (Subjective)</b><br/>I / He / She / They"]
+        Obj["2️⃣ <b>宾格 (Objective)</b><br/>me / him / her / them"]
+    end
+
+    subgraph Possessive["所有格与反身格位 (Possessive & Reflexive)"]
+        Det["3️⃣ <b>形容词性物主 (Determiner)</b><br/>my / his / our / their"]
+        Nom["4️⃣ <b>名词性物主 (Nominal)</b><br/>mine / hers / ours / theirs"]
+        Ref["5️⃣ <b>反身代词 (Reflexive)</b><br/>myself / himself / itself"]
+    end
+
+    Entity --> Direct
+    Entity --> Possessive`,
+      details: [
+        {
+          label: '1. 主格 (Subjective Case)',
+          enPhrase: 'THEY developed the architecture / WE run the tests.',
+          zhMeaning: '充当句子的唯一主动动作发起者（主语）。',
+          tag: '格位形态',
+        },
+        {
+          label: '2. 宾格 (Objective Case)',
+          enPhrase: 'Contact HIM immediately / The bug affects US.',
+          zhMeaning: '充当动词的直接客体或介词的支配对象（介宾必用宾格）。',
+          tag: '格位形态',
+        },
+        {
+          label: '3. 形物代 (Possessive Determiner)',
+          enPhrase: 'OUR team / THEIR configuration / HIS branch',
+          zhMeaning: '修饰后续名词，不能单独作为独立主干存在。',
+          tag: '格位形态',
+        },
+        {
+          label: '4. 名物代 (Nominal Possessive)',
+          enPhrase: 'This pull request is MINE / The cluster is THEIRS.',
+          zhMeaning: '等于【形物代 + 名词】，本身具备完整实体概念，可作主宾表。',
+          tag: '格位形态',
+        },
+        {
+          label: '5. 反身代词 (Reflexive)',
+          enPhrase: 'The node restarted ITSELF / I saw it MYSELF.',
+          zhMeaning: '主语与宾语为同一实体时强制使用，或放置句尾充当纯粹强调。',
+          tag: '格位形态',
+        },
+      ],
     },
     {
       id: 'd-it-four-roles',
       title: '超级代词 It 的四大神通角色解构',
       desc: '从具体物体引用、自然环境变量、形式主语占位到形式宾语平衡',
       code: `graph TD
-    It["超级多态代词 it"] --> R1["角色 1: 具象事物指针 (Entity Pointer)\n指代上文提及的代码/服务器/Bug\nThe API failed, and it returned 500."]
-    It --> R2["角色 2: 环境全局变量 (Global Environment)\n指代时间/天气/物理距离\nIt is 9:00 AM. / It is hot in the rack."]
-    It --> R3["角色 3: 形式主语指针 (Dummy Subject)\n平衡主语避免头重脚轻\nIt is critical to backup data."]
-    It --> R4["角色 4: 形式宾语指针 (Dummy Object)\n维持复合宾语结构自洽\nWe find it easy to scale."]`,
+    It["🤖 <b>超级多态代词 it</b><br/>The Universal Polymorphic Keyword"]
+
+    subgraph Concrete["具体与环境变量 (Pointer & Environment)"]
+        R1["📦 <b>1. 具象指针 (Entity Pointer)</b><br/>指代上下文具体组件/Bug"]
+        R2["🌐 <b>2. 全局环境标尺 (Global Env)</b><br/>指代时间 / 天气 / 物理距离"]
+    end
+
+    subgraph Dummy["语法平衡占位符 (Structural Dummy)"]
+        R3["⚖️ <b>3. 形式主语 (Dummy Subject)</b><br/>平衡主语避免头重脚轻"]
+        R4["🎯 <b>4. 形式宾语 (Dummy Object)</b><br/>维持复合宾语结构自洽"]
+    end
+
+    It --> Concrete
+    It --> Dummy`,
+      details: [
+        {
+          label: '1. 具象事物指针 (Entity Pointer)',
+          enPhrase: 'The microservice crashed, and IT returned error code 503.',
+          zhMeaning: '精准指代上文提及的代码库、服务器、Bug 或特定单数事物。',
+          tag: '多态角色',
+        },
+        {
+          label: '2. 全局环境标尺 (Global Environment)',
+          enPhrase: 'IT is 9:00 AM / IT is cold inside the datacenter.',
+          zhMeaning: '充当自然语言环境、气候、时刻或物理跨度的自然宿主主语。',
+          tag: '多态角色',
+        },
+        {
+          label: '3. 形式主语指针 (Dummy Subject)',
+          enPhrase: 'IT is critical TO backup all production schemas regularly.',
+          zhMeaning: '避免动名词或不定式主语过于臃肿导致头重脚轻，由 it 站岗句首。',
+          tag: '结构平衡',
+        },
+        {
+          label: '4. 形式宾语指针 (Dummy Object)',
+          enPhrase: 'We found IT easy TO scale our stateless services.',
+          zhMeaning: '在 find/make/consider 复合宾语结构中，用 it 占位并将真正的不定式后置。',
+          tag: '结构平衡',
+        },
+      ],
     },
   ],
   formulas: [

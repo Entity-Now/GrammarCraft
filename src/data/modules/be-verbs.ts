@@ -16,19 +16,73 @@ export const beVerbsTopic: TopicContent = {
       title: 'Be 动词四维时空存在锚点模型 (The 4D Existence Matrix)',
       desc: 'Be 动词不仅仅是“是”，它是英语语法在四维时空网格中锚定主语状态的核心连接器',
       code: `graph TD
-    Be["be 动词 (时空存在锚点)"] --> Axis1["1. 身份轴 (Identity)\n我是谁？属于哪一类？\nI am an engineer."]
-    Be --> Axis2["2. 状态轴 (State)\n当前呈现什么属性/特征？\nThe system is stable."]
-    Be --> Axis3["3. 位置轴 (Location)\n在物理或抽象空间何处？\nThe logs are in the cloud."]
-    Be --> Axis4["4. 时间切片 (Time Snapshot)\n过去 vs 现在 vs 持续完成\nwas (回溯) / is (此刻) / been (跨越)"]`,
+    Be["🌐 <b>Be 动词 (时空存在锚点)</b><br/>Connecting Subject & Reality"]
+    Be --> Axis1["🪪 <b>1. 身份轴 (Identity)</b><br/>I am an engineer"]
+    Be --> Axis2["📊 <b>2. 状态轴 (State)</b><br/>The cluster is stable"]
+    Be --> Axis3["📍 <b>3. 位置轴 (Location)</b><br/>Logs are in the cloud"]
+    Be --> Axis4["⏱️ <b>4. 时空切片 (Time)</b><br/>was / is / been"]`,
+      details: [
+        {
+          label: '1. 身份轴 (Identity)',
+          enPhrase: 'I am a full-stack engineer / It is a critical microservice.',
+          zhMeaning: '赋予主语社会角色、物种分类或系统定位（S + be + 名词）。',
+          tag: '存在属性',
+        },
+        {
+          label: '2. 状态属性轴 (State)',
+          enPhrase: 'The database cluster is highly available and stable.',
+          zhMeaning: '给主语贴上瞬时或持续的形容词属性标签（S + be + 形容词）。',
+          tag: '存在属性',
+        },
+        {
+          label: '3. 空间方位轴 (Location)',
+          enPhrase: 'All system configuration files are in the root directory.',
+          zhMeaning: '锚定主语在物理世界或抽象网络中的坐标（S + be + 介词短语）。',
+          tag: '空间定位',
+        },
+        {
+          label: '4. 时间切片轴 (Time)',
+          enPhrase: 'The node was offline yesterday, but it is healthy now.',
+          zhMeaning: '切换 was（过去）、is（此刻）与 has been（历史跨越至今）的时态切片。',
+          tag: '时序状态',
+        },
+      ],
     },
     {
       id: 'd-be-family-tree',
       title: 'Be 动词全家桶 8 大形态与语法职责演变谱系',
       desc: 'be 原形、现在式 (am/is/are)、过去式 (was/were)、过去分词 (been)、现在分词 (being)',
-      code: `graph LR
-    Base["be (动词原形)\n情态动词后/虚拟式\ncan be / must be / recommend be"] --> Present["现在时形态\nam (第一人称 I)\nis (单数单三 he/she/it)\nare (复数/第二人称 you/we/they)"]
-    Base --> Past["过去时形态\nwas (I / he / she / it)\nwere (you / we / they)"]
-    Base --> Participle["分词变形\nbeen (过去分词: 配合 have/has/had 构成完成态)\nbeing (现在分词: 配合 be 构成进行态 / 充当动名词)"]`,
+      code: `graph TD
+    Base["🌱 <b>be (动词原形 Base)</b><br/>情态动词 / 不定式 / 命令建议虚拟从句"]
+    Base --> Present["☀️ <b>现在时 (Present)</b><br/>am / is / are"]
+    Base --> Past["🌙 <b>过去时 (Past)</b><br/>was / were"]
+    Base --> Participle["🔄 <b>分词形态 (Participles)</b><br/>been (完成态) / being (进行态)"]`,
+      details: [
+        {
+          label: '原形 be (Base Form)',
+          enPhrase: 'can be / will be / demand that it be updated immediately',
+          zhMeaning: '出现在情态动词后、不定式 to be 或命令建议虚拟从句中（省略 should）。',
+          tag: '原形形态',
+        },
+        {
+          label: '现在时 am / is / are',
+          enPhrase: 'I am / The server is / The nodes are',
+          zhMeaning: '根据主语人称单复数进行严密的一致性匹配。',
+          tag: '现在形态',
+        },
+        {
+          label: '过去时 was / were',
+          enPhrase: 'The service was down / The requests were throttled',
+          zhMeaning: '回溯过去的单一事件或状态。',
+          tag: '过去形态',
+        },
+        {
+          label: '分词 been / being',
+          enPhrase: 'has been running (完成态) / is being updated (被动进行)',
+          zhMeaning: '配合 have 启动完成体态，或配合 be 启动被动进行体态。',
+          tag: '分词形态',
+        },
+      ],
     },
   ],
   formulas: [
@@ -38,6 +92,7 @@ export const beVerbsTopic: TopicContent = {
       badge: '全景职责',
       formula: '1. 主系表赋值 (S + Be + 表语) | 2. 进行时助动 (Be + V-ing) | 3. 被动语态 (Be + V-ed) | 4. 存在句型 (There be) | 5. 计划意图 (Be to do)',
       desc: 'Be 动词是英语中身兼最多职责的超级动词：既能独当一面充当系动词连接主语和表语，又能作为辅助引擎调度进行时态、被动语态和正式计划安排！',
+      beginnerTip: '【小白秒懂口诀】be 动词其实就是一个“等号（=）”！它本身没有具体的跑、跳、吃动作，专门用来给主语“贴标签（讲身份、说状态、标位置）”。如果跟在动词后面，它就变身“小帮手”，帮别人组装出【正在做 (be doing)】和【被做 (be done)】！',
       tokens: [
         { label: 'Role 1: 系动词', role: '状态属性赋值', color: 'blue', desc: 'The server is online (连接形容词/名词/介词短语)' },
         { label: 'Role 2: 进行助动', role: '正在发生流沙', color: 'emerald', desc: 'We are deploying (be 提供时态，-ing 提供正在进行含义)' },
@@ -55,6 +110,7 @@ export const beVerbsTopic: TopicContent = {
       badge: '核心痛点',
       formula: 'have / has / had + been (表“完成/持续/去过/历史跨度”) VS am / is / are / was / were + being (表“此刻正在发生/正在被/表现出”)',
       desc: 'been 是过去分词，必须由 have/has/had 启动，强调动作从过去跨越到现在；being 是现在分词，由 be 启动，强调“此时此刻临时正在进行”或“正在被处理”。',
+      beginnerTip: '【区分口诀】been 找 have（搭档 have/has/had），讲的是“已经完成、持续好久、去过某地”；being 找 be（搭档 am/is/are/was/were），讲的是“眼下此刻正在被摆弄”！例：The car has been repaired（车修好了） vs The car is being repaired（车正在修呢）。',
       tokens: [
         { label: 'been', role: '过去分词', color: 'purple', desc: 'I have been busy (持续忙碌) / have been to Beijing (去过某地)' },
         { label: 'being', role: '现在分词', color: 'emerald', desc: 'The node is being restarted (正在被重启) / He is being silly (此刻正在犯傻)' },
@@ -128,7 +184,8 @@ export const beVerbsTopic: TopicContent = {
         { text: 'be restarted', role: '虚拟式动词原形', type: 'verb', detail: '省略 should，保留原形 be' },
         { text: '[immediately]', role: '时间副词状语', type: 'adverbial', detail: '立即' },
       ],
-      explanation: '严禁写成 *was restarted 或 *is restarted！虚拟语气命令建议从句必须使用裸动词原形 be。',
+      explanation: '严禁写成 *was restarted 或 *is restarted！在 recommend/require/demand/order/suggest 等“命令建议动词”后面的 that 从句中，表达的是尚未发生的强烈建议，语法上属于虚拟语气，固定结构为 (should) + 动词原形。现代英语（尤其是美式）习惯省略 should，因此留下了纯粹的动词原形 be（详见“宾语从句”专题中的命令建议从句口诀）。',
+      beginnerAnalogy: '小白秒懂：看到从句里冒出一个孤零零的 be 觉得别扭？其实只要脑补一个隐形的 should：that the container (should) be restarted。因为是提建议，应该做的事情还没发生，所以绝不能顺着主句写成过去的 was，必须保留原形 be！牢记口诀：建议命令接从句，动词打回原形 be！',
       itAnalogy: 'spec.require(container, c => c.state === State.RESTARTING);',
     },
   ],

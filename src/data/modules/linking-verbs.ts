@@ -16,12 +16,54 @@ export const linkingVerbsTopic: TopicContent = {
       title: '系动词 7 大语义家族全景图谱 (The 7 Copular Families)',
       desc: '系动词不表示肢体动作，而是将主语连接到属性状态上。7大家族覆盖静态、感知、演进与证实',
       code: `graph TD
-    LV["系动词总谱系 (Linking Verbs)"] --> F1["1. 纯粹存在类\nbe (am/is/are/was/were)"]
-    LV --> F2["2. 五大感官类 (Sensory)\nlook (看起来) / sound (听起来)\nsmell (闻起来) / taste (尝起来) / feel (感觉)"]
-    LV --> F3["3. 变化演进类 (Change)\nbecome (变成) / get (逐渐变得)\nturn (变色/突变) / grow (渐变)\ngo (恶化: go bad/wrong/offline)\ncome (成真: come true) / fall (fall ill)"]
-    LV --> F4["4. 持续保持类 (Keep/Stay)\nkeep (保持) / stay (维持稳定)\nremain (依然保持) / continue (持续)"]
-    LV --> F5["5. 表象推断类 (Appearance)\nseem (似乎) / appear (显得)"]
-    LV --> F6["6. 证实证明类 (Proof)\nprove (证明是) / turn out (结果是)"]`,
+    LV["🔗 <b>系动词语义家族全景</b><br/>Copular Verbs Architecture"]
+
+    subgraph Static["静态与感知域 (Static & Sensory)"]
+        F1["🌐 <b>1. 纯粹存在类</b><br/>be (am / is / are / was / were)"]
+        F2["👀 <b>2. 五大感官类</b><br/>look, sound, feel, taste, smell"]
+        F5["🔍 <b>3. 表象推断类</b><br/>seem, appear"]
+    end
+
+    subgraph Dynamic["动态演进与证明域 (Dynamic & Proof)"]
+        F3["🔄 <b>4. 状态演进类</b><br/>become, get, turn, go offline"]
+        F4["🛡️ <b>5. 持续保持类</b><br/>keep, stay, remain"]
+        F6["⚖️ <b>6. 证实证明类</b><br/>prove, turn out"]
+    end
+
+    LV --> Static
+    LV --> Dynamic`,
+      details: [
+        {
+          label: '纯粹存在类 (Existence)',
+          enPhrase: 'The server IS online / We ARE ready.',
+          zhMeaning: '充当最基础的等号连接器，赋予主语状态与属性。',
+          tag: '基础连接',
+        },
+        {
+          label: '五大感官类 (Sensory)',
+          enPhrase: 'The plan SOUNDS viable / The UI LOOKS clean.',
+          zhMeaning: '后接形容词而非副词（如 looks clean 绝不能说成 looks cleanly）！',
+          tag: '感官连接',
+        },
+        {
+          label: '状态演进类 (Change)',
+          enPhrase: 'The node WENT offline / Things BECAME complicated.',
+          zhMeaning: '描述状态转移，go 常接负面状态（go bad/go wrong/go offline）。',
+          tag: '状态转移',
+        },
+        {
+          label: '持续保持类 (Continuity)',
+          enPhrase: 'STAY calm / REMAIN competitive / KEEP updated.',
+          zhMeaning: '表示状态维持不变，连接形容词或过去分词。',
+          tag: '状态维持',
+        },
+        {
+          label: '证实证明类 (Proof)',
+          enPhrase: 'The hypothesis PROVED correct / The release TURNED OUT successful.',
+          zhMeaning: '经由运行或时间检验后，得出客观属性结论。',
+          tag: '检验结论',
+        },
+      ],
     },
   ],
   formulas: [
